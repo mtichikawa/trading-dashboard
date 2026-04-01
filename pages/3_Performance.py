@@ -119,7 +119,7 @@ st.markdown('<p class="section-label">Equity Curve & Drawdown</p>', unsafe_allow
 st.plotly_chart(
     equity_with_drawdown(equity),
     use_container_width=True,
-    config={"displayModeBar": False},
+    config={"displayModeBar": "hover", "displaylogo": False, "doubleClick": "reset+autosize"},
 )
 
 st.markdown("---")
@@ -134,7 +134,7 @@ with col1:
     st.plotly_chart(
         pnl_histogram(trades),
         use_container_width=True,
-        config={"displayModeBar": False},
+        config={"displayModeBar": "hover", "displaylogo": False, "doubleClick": "reset+autosize"},
     )
 
 with col2:

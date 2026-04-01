@@ -169,7 +169,7 @@ for s in signals:
         st.plotly_chart(
             indicator_bar_chart(s, title="Indicator Breakdown"),
             use_container_width=True,
-            config={"displayModeBar": False},
+            config={"displayModeBar": "hover", "displaylogo": False, "doubleClick": "reset+autosize"},
         )
     with legend_col:
         st.markdown("**What each indicator measures**")

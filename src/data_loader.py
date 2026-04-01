@@ -137,23 +137,35 @@ def synthetic_sweep_results() -> pd.DataFrame:
 
 
 def _synthetic_backtest_result() -> Dict:
-    """Synthetic backtest result matching T4 output format."""
-    rng = np.random.default_rng(99)
-    n = 200
-    returns = rng.normal(0.0002, 0.008, n)
-    equity = [10000.0]
-    for r in returns:
-        equity.append(equity[-1] * (1 + r))
+    """Synthetic backtest result matching T4 output format.
 
+    Equity curve is designed with distinct phases so charts show meaningful
+    shape rather than a near-flat line.
+    """
+    rng = np.random.default_rng(99)
+
+    # Phased equity curve: growth → drawdown → consolidation → rally
+    equity = [10000.0]
+    phases = [
+        (90,  0.0013, 0.007),   # steady uptrend
+        (50, -0.0022, 0.010),   # drawdown period
+        (30,  0.0006, 0.006),   # consolidation
+        (130, 0.0015, 0.008),   # recovery and rally
+    ]
+    for n_candles, mean, std in phases:
+        for _ in range(n_candles):
+            equity.append(equity[-1] * (1 + rng.normal(mean, std)))
+
+    n = len(equity) - 1
     trades = []
     for i in range(0, n - 5, 8):
-        pnl = float(rng.normal(0.003, 0.015))
+        pnl = float(rng.normal(0.004, 0.018))
         trades.append({
             "entry_price": round(equity[i], 2),
             "exit_price": round(equity[i] * (1 + pnl), 2),
             "side": "long" if rng.random() > 0.35 else "short",
             "pnl_pct": round(pnl, 6),
-            "bars_held": int(rng.integers(2, 12)),
+            "bars_held": int(rng.integers(2, 14)),
         })
 
     wins = [t for t in trades if t["pnl_pct"] > 0]

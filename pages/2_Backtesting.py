@@ -108,14 +108,14 @@ with chart_col:
     st.plotly_chart(
         equity_curve_chart(equity, title=""),
         use_container_width=True,
-        config={"displayModeBar": False},
+        config={"displayModeBar": "hover", "displaylogo": False, "doubleClick": "reset+autosize"},
     )
     st.markdown("&nbsp;")
     st.markdown('<p class="section-label">P&L Distribution</p>', unsafe_allow_html=True)
     st.plotly_chart(
         pnl_histogram(trades),
         use_container_width=True,
-        config={"displayModeBar": False},
+        config={"displayModeBar": "hover", "displaylogo": False, "doubleClick": "reset+autosize"},
     )
 
 with trades_col:
