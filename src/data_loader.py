@@ -100,6 +100,42 @@ def _synthetic_signals() -> List[Dict]:
     return signals
 
 
+def synthetic_sweep_results() -> pd.DataFrame:
+    """Synthetic parameter sweep results matching T4 output format.
+
+    Returns a DataFrame of parameter configurations ranked by Sharpe ratio,
+    with the best configuration (matching current params) at the top.
+    """
+    configs = [
+        # tech_weight, threshold, stop_loss, sharpe, sortino, return_pct, win_rate
+        (0.6, 0.10, 0.02, 1.42, 2.07, 8.32, 0.58),  # BEST — current config
+        (0.6, 0.15, 0.02, 1.35, 1.91, 7.88, 0.60),
+        (0.7, 0.10, 0.02, 1.28, 1.78, 7.14, 0.56),
+        (0.6, 0.10, 0.01, 1.21, 1.65, 6.92, 0.55),
+        (0.5, 0.10, 0.02, 1.18, 1.62, 6.71, 0.54),
+        (0.6, 0.10, 0.03, 1.15, 1.54, 7.20, 0.59),
+        (0.8, 0.10, 0.02, 1.09, 1.48, 5.83, 0.52),
+        (0.6, 0.20, 0.02, 1.07, 1.41, 6.40, 0.61),
+        (0.4, 0.10, 0.02, 0.98, 1.31, 5.12, 0.50),
+        (0.6, 0.05, 0.02, 0.92, 1.22, 5.88, 0.49),
+        (0.5, 0.15, 0.01, 0.87, 1.15, 4.95, 0.51),
+        (0.7, 0.15, 0.03, 0.81, 1.08, 5.41, 0.53),
+    ]
+    rows = []
+    for tw, thr, sl, sh, so, ret, wr in configs:
+        rows.append({
+            "tech_weight": tw,
+            "sent_weight": round(1 - tw, 1),
+            "signal_threshold": thr,
+            "stop_loss": f"{sl:.0%}",
+            "sharpe": sh,
+            "sortino": so,
+            "return_pct": f"{ret:+.2f}%",
+            "win_rate": f"{wr:.0%}",
+        })
+    return pd.DataFrame(rows)
+
+
 def _synthetic_backtest_result() -> Dict:
     """Synthetic backtest result matching T4 output format."""
     rng = np.random.default_rng(99)
