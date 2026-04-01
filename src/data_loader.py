@@ -71,7 +71,7 @@ def load_backtest_result(result_path: Optional[Path] = None) -> Dict:
 
 def _synthetic_signals() -> List[Dict]:
     """Synthetic signals matching T3 output format, seeded for reproducibility."""
-    rng = np.random.default_rng(42)
+    rng = np.random.default_rng(42)  # fixed seed: same synthetic data every run
     now = datetime.utcnow().isoformat() + "+00:00"
     pairs = [("BTC/USD", "1h"), ("ETH/USD", "4h"), ("SOL/USD", "1h")]
     signals = []
