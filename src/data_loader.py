@@ -12,7 +12,7 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 
-# Paths relative to this repo's position in the arc
+# Paths relative to this repo's position in the arc (projects-hub/trading-dashboard/)
 _ROOT = Path(__file__).parent.parent.parent
 SIGNALS_DIR = _ROOT / "trading-signal-engine" / "signals"
 BACKTESTER_DIR = _ROOT / "trading-backtester"
