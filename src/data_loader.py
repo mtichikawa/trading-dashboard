@@ -28,7 +28,7 @@ def load_latest_signals(signals_dir: Path = SIGNALS_DIR) -> List[Dict]:
     if not signals_dir.exists():
         return _synthetic_signals()
 
-    files = sorted(signals_dir.glob("signals_*.json"))
+    files = sorted(signals_dir.glob("signals_*.json"))  # sort by filename timestamp
     if not files:
         return _synthetic_signals()
 
