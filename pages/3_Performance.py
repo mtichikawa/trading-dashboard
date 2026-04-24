@@ -1,7 +1,7 @@
 """Performance — deep dive into risk metrics, drawdown, and trade analysis."""
 
-import sys
 from pathlib import Path
+import sys
 
 import pandas as pd
 import streamlit as st
