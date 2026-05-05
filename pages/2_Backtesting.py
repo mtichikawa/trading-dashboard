@@ -9,36 +9,11 @@ import streamlit as st
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.charts import equity_curve_chart, pnl_histogram
 from src.data_loader import load_backtest_result
+from src.style import inject_css, sidebar_links
 
 st.set_page_config(page_title="Backtesting", page_icon="📊", layout="wide")
-
-st.markdown("""
-<style>
-.section-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
-    text-transform: uppercase; color: #6cc0e0; margin-bottom: 4px;
-}
-.explainer {
-    background: rgba(26,35,50,0.5);
-    border-left: 3px solid #3a6888;
-    border-radius: 0 6px 6px 0;
-    padding: 14px 18px;
-    color: #90b0c8;
-    font-size: 13px;
-    line-height: 1.7;
-}
-.explainer strong { color: #e8eef4; }
-.metric-card {
-    background: rgba(26,35,50,0.7);
-    border: 1px solid #3a6888;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-}
-.metric-val { font-size: 26px; font-weight: 700; color: #6cc0e0; }
-.metric-lbl { font-size: 11px; color: #7098b0; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
-</style>
-""", unsafe_allow_html=True)
+inject_css()
+sidebar_links()
 
 st.markdown('<p class="section-label">T4 — trading-backtester</p>', unsafe_allow_html=True)
 st.title("📊 Backtesting")

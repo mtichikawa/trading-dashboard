@@ -7,59 +7,11 @@ import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.data_loader import load_backtest_result, synthetic_sweep_results
+from src.style import inject_css, sidebar_links
 
 st.set_page_config(page_title="Parameters", page_icon="⚙️", layout="wide")
-
-st.markdown("""
-<style>
-.section-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
-    text-transform: uppercase; color: #6cc0e0; margin-bottom: 4px;
-}
-.config-box {
-    background: rgba(26,35,50,0.7);
-    border: 1px solid #3a6888;
-    border-radius: 8px;
-    padding: 20px 24px;
-}
-.config-param { font-size: 14px; margin-bottom: 10px; color: #e8eef4; }
-.config-param code { background: rgba(108,192,224,0.15); color: #6cc0e0; padding: 2px 8px; border-radius: 4px; font-size: 13px; }
-.config-label { color: #90b0c8; }
-.best-badge {
-    display: inline-block;
-    background: rgba(76,175,125,0.2);
-    border: 1px solid #4caf7d;
-    color: #4caf7d;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-left: 8px;
-}
-.loop-box {
-    background: rgba(26,35,50,0.6);
-    border-left: 3px solid #6cc0e0;
-    border-radius: 0 6px 6px 0;
-    padding: 18px 24px;
-    color: #a0c0d8;
-    font-size: 13.5px;
-    line-height: 1.85;
-}
-.loop-box strong { color: #e8eef4; }
-.stage-box {
-    background: rgba(26,35,50,0.5);
-    border: 1px solid #2a3a4a;
-    border-radius: 6px;
-    padding: 14px 16px;
-    height: 100%;
-}
-.stage-num { font-size: 11px; font-weight: 700; color: #6cc0e0; letter-spacing: 0.15em; text-transform: uppercase; }
-.stage-title { font-size: 14px; font-weight: 600; color: #e8eef4; margin: 4px 0; }
-.stage-desc { font-size: 12px; color: #90b0c8; line-height: 1.6; }
-</style>
-""", unsafe_allow_html=True)
+inject_css()
+sidebar_links()
 
 st.markdown('<p class="section-label">T4 → T3 Feedback Loop</p>', unsafe_allow_html=True)
 st.title("⚙️ Parameters")
