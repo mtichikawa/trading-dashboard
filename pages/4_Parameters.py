@@ -8,6 +8,7 @@ import streamlit as st
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.data_loader import load_backtest_result, synthetic_sweep_results
 from src.style import inject_css, sidebar_links
+from typing import Any
 
 st.set_page_config(page_title="Parameters", page_icon="⚙️", layout="wide")
 inject_css()
@@ -129,7 +130,7 @@ st.markdown("&nbsp;")
 
 df = synthetic_sweep_results()
 
-def highlight_best(row):
+def highlight_best(row: Any):
     if row.name == 0:
         return ["background-color: rgba(76,175,125,0.15); border-left: 3px solid #4caf7d"] * len(row)
     return [""] * len(row)
