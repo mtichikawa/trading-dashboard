@@ -1,7 +1,7 @@
 """Signal Pipeline — T1 through T3 explained and visualized."""
 
-import sys
 from pathlib import Path
+import sys
 
 import streamlit as st
 
