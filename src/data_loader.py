@@ -4,10 +4,10 @@ Reads T3 signal JSON files and T4 backtest results.
 Falls back to synthetic data when live files are unavailable.
 """
 
-import json
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
+import json
 
 import numpy as np
 import pandas as pd
