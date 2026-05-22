@@ -1,10 +1,10 @@
 """Reusable Plotly chart builders for the trading dashboard."""
 
-import statistics
 from typing import Dict, List
+import statistics
 
-import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 _BG = "#0d1520"
 _BG2 = "#1a2332"
