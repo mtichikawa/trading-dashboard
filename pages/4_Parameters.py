@@ -1,7 +1,7 @@
 """Parameters — T4 sweep results, current config, and T3↔T4 feedback loop."""
 
-import sys
 from pathlib import Path
+import sys
 
 import streamlit as st
 
