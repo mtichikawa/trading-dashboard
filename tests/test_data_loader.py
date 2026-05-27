@@ -1,7 +1,7 @@
 """Tests for data_loader — synthetic fallback and DataFrame conversion."""
 
-import sys
 from pathlib import Path
+import sys
 
 import pytest
 
