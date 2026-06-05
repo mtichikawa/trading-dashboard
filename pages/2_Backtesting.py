@@ -50,6 +50,15 @@ params = result["parameters"]
 trades = result["trades"]
 equity = result["equity_curve"]
 
+if result.get("is_synthetic", False):
+    st.warning(
+        "**Illustrative demo data, not a real or backtested track record.** "
+        "No live backtest result files are available in this deployment, so the "
+        "metrics below come from a fixed-seed synthetic generator and exist only "
+        "to demonstrate the dashboard UI. Do not read them as trading performance.",
+        icon="⚠️",
+    )
+
 # ── METRICS ──────────────────────────────────────────────────────────────────
 st.markdown('<p class="section-label">Performance Metrics</p>', unsafe_allow_html=True)
 st.markdown("&nbsp;")
@@ -129,4 +138,8 @@ with trades_col:
         st.markdown(f"**{label}:** `{display}`")
 
 st.markdown("---")
-st.caption("Results from T4 trading-backtester · synthetic data shown when live result files unavailable")
+st.caption(
+    "Illustrative synthetic demo data (fixed-seed generator) · not live or backtested performance"
+    if result.get("is_synthetic", False) else
+    "Results from T4 trading-backtester on historical OHLCV data"
+)

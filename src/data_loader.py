@@ -65,7 +65,9 @@ def load_backtest_result(result_path: Optional[Path] = None) -> Dict:
     """
     if result_path is not None and Path(result_path).exists():
         with open(result_path) as f:
-            return json.load(f)
+            result = json.load(f)
+        result.setdefault("is_synthetic", False)
+        return result
     return _synthetic_backtest_result()
 
 
@@ -191,4 +193,5 @@ def _synthetic_backtest_result() -> Dict:
         },
         "trades": trades,
         "equity_curve": [round(e, 2) for e in equity],
+        "is_synthetic": True,
     }

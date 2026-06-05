@@ -28,6 +28,16 @@ result = load_backtest_result()
 metrics = result["metrics"]
 trades = result["trades"]
 equity = result["equity_curve"]
+is_synthetic = result.get("is_synthetic", False)
+
+if is_synthetic:
+    st.warning(
+        "**Illustrative demo data, not a real or backtested track record.** "
+        "No live backtest result files are available in this deployment, so the "
+        "metrics below come from a fixed-seed synthetic generator and exist only "
+        "to demonstrate the dashboard UI. Do not read them as trading performance.",
+        icon="⚠️",
+    )
 
 wins = [t for t in trades if t["pnl_pct"] > 0]
 losses = [t for t in trades if t["pnl_pct"] <= 0]
@@ -43,7 +53,8 @@ metric_defs = [
     ("Sharpe Ratio", f"{metrics['sharpe_ratio']:.2f}", "Annualized · rf=0", "neutral"),
     ("Sortino Ratio", f"{metrics['sortino_ratio']:.2f}", "Downside deviation only", "neutral"),
     ("Max Drawdown", f"{metrics['max_drawdown_pct']:.2f}%", "Peak-to-trough decline", "negative"),
-    ("Total Return", f"{metrics['total_return_pct']:+.2f}%", "Over backtest period", "positive"),
+    ("Total Return", f"{metrics['total_return_pct']:+.2f}%",
+     "Demo data, not live" if is_synthetic else "Over backtest period", "positive"),
     ("Avg Win", f"{avg_win:+.2f}%", "Per winning trade", "positive"),
     ("Avg Loss", f"{avg_loss:+.2f}%", "Per losing trade", "negative"),
 ]
@@ -139,4 +150,8 @@ with col3:
     st.markdown(f"**Avg hold time:** {avg_bars:.1f} bars")
 
 st.markdown("---")
-st.caption("Results from T4 trading-backtester · synthetic data shown when live result files unavailable")
+st.caption(
+    "Illustrative synthetic demo data (fixed-seed generator) · not live or backtested performance"
+    if is_synthetic else
+    "Results from T4 trading-backtester on historical OHLCV data"
+)
