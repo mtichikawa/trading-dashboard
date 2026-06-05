@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.charts import equity_curve_chart, pnl_histogram
 from src.data_loader import load_backtest_result
 from src.style import inject_css, sidebar_links
+from typing import Any
 
 st.set_page_config(page_title="Backtesting", page_icon="📊", layout="wide")
 inject_css()
@@ -114,7 +115,7 @@ with trades_col:
         df["exit"] = df["exit_price"].map(lambda x: f"${x:,.2f}")
         df["bars"] = df["bars_held"]
 
-        def color_row(row):
+        def color_row(row: Any):
             color = "#1a3a2a" if "+" in row["pnl"] else "#3a1a1a"
             return [f"background-color: {color}"] * len(row)
 
