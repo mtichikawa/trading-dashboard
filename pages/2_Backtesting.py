@@ -1,7 +1,7 @@
 """Backtesting — T4 results: equity curve, metrics, and trade log."""
 
-import sys
 from pathlib import Path
+import sys
 
 import pandas as pd
 import streamlit as st
