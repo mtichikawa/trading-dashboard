@@ -1,6 +1,8 @@
 # trading-dashboard · T5
 
-Streamlit multi-page oversight dashboard for the T1–T5 paper trading arc. Reads signal output from T3 and backtest results from T4. Falls back to synthetic data when live files are unavailable — no database or paid APIs required to run.
+Streamlit multi-page oversight dashboard for the T1–T5 trading system. Reads signal output from T3 and backtest results from T4. Falls back to synthetic data when live files are unavailable — no database or paid APIs required to run.
+
+The live demo runs on that synthetic data. Every equity curve, return, Sharpe ratio and win rate it shows is illustrative output from a fixed-seed generator, not a real or backtested track record.
 
 **[Live Demo](https://mtichikawa-trading.streamlit.app)**
 
@@ -8,13 +10,13 @@ Streamlit multi-page oversight dashboard for the T1–T5 paper trading arc. Read
 
 ## Trading Arc
 
-| Repo | Role | Status |
-|------|------|--------|
-| T1 · crypto-data-pipeline | Live OHLCV ingestion · market event tagging | Shipped Mar 6 |
-| T2 · trading-chart-generator | Candlestick PNGs + JSON sidecars · 25/25 tests | Shipped Mar 10 |
-| T3 · trading-signal-engine | Technical indicators + FinBERT sentiment · 51/51 tests | Shipped Mar 16 |
-| T4 · trading-backtester | Backtesting + parameter sweep · 72/72 tests | Shipped Mar 26 |
-| **T5 · trading-dashboard** | Streamlit oversight UI · 8/8 tests | Shipped Mar 31 |
+| Repo | Role |
+|------|------|
+| T1 · crypto-data-pipeline | Live OHLCV ingestion · market event tagging |
+| T2 · trading-chart-generator | Candlestick PNGs + JSON sidecars |
+| T3 · trading-signal-engine | Technical indicators + FinBERT sentiment |
+| T4 · trading-backtester | Backtesting + parameter sweep |
+| **T5 · trading-dashboard** | Streamlit oversight UI |
 
 ---
 
@@ -73,7 +75,7 @@ python examples/quick_demo.py
 
 ```bash
 pytest tests/ -v
-# 8/8 — data_loader synthetic fallback and DataFrame conversion
+# data_loader synthetic fallback and DataFrame conversion
 ```
 
 ---
