@@ -26,7 +26,7 @@ SEPARATOR = "─" * 56
 
 def main():
     print("\n=== Trading Arc Dashboard — Quick Demo ===")
-    print("    T1–T5 paper trading system · synthetic data mode\n")
+    print("    T1–T5 trading research system · synthetic data mode\n")
 
     # Signals
     print(SEPARATOR)
