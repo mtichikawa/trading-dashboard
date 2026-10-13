@@ -1,4 +1,4 @@
-"""Parameters — T4 sweep results, current config, and T3↔T4 feedback loop."""
+"""Parameters — T4 sweep results and the current T3 config."""
 
 from pathlib import Path
 import sys
@@ -14,12 +14,12 @@ st.set_page_config(page_title="Parameters", page_icon="⚙️", layout="wide")
 inject_css()
 sidebar_links()
 
-st.markdown('<p class="section-label">T4 → T3 Feedback Loop</p>', unsafe_allow_html=True)
+st.markdown('<p class="section-label">T4 Parameter Sweep</p>', unsafe_allow_html=True)
 st.title("⚙️ Parameters")
 st.markdown(
     "T4's parameter sweep finds the signal configuration that maximizes Sharpe ratio "
-    "over the backtest window. The winning parameters are written back to T3 as defaults — "
-    "closing the feedback loop between signal generation and strategy evaluation."
+    "over the backtest window and saves it to parameter_report.json. Nothing applies it "
+    "automatically: T3's weights and thresholds are set by hand, after reviewing results like these."
 )
 
 st.markdown("---")
@@ -158,17 +158,16 @@ st.caption("Row 1 (highlighted) is the current active configuration.")
 st.markdown("---")
 
 # ── FEEDBACK LOOP ────────────────────────────────────────────────────────────
-st.markdown('<p class="section-label">The Feedback Loop</p>', unsafe_allow_html=True)
+st.markdown('<p class="section-label">From Sweep to Config</p>', unsafe_allow_html=True)
 st.markdown("&nbsp;")
 
 st.markdown("""
 <div class="loop-box">
 <strong>T3 generates signals</strong> using its current parameter defaults.<br>
 <strong>T4 backtests those signals</strong> against historical OHLCV data and runs the staged parameter sweep.<br>
-<strong>T4 writes parameter_report.json</strong> — the winning configuration — to its results directory.<br>
-<strong>T3 reads parameter_report.json</strong> on next run and updates its defaults.<br>
-<strong>T5 (this dashboard)</strong> shows you the sweep results so you can review and approve before the loop closes.<br><br>
-The system self-optimizes. You stay in the loop as the decision-maker.
+<strong>T4 writes parameter_report.json</strong>, the best-scoring configuration, to its results directory.<br>
+<strong>T5 (this dashboard)</strong> shows the sweep results for review.<br>
+<strong>A person decides</strong> whether to change T3's defaults. Nothing is applied automatically.
 </div>
 """, unsafe_allow_html=True)
 

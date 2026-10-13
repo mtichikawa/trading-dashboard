@@ -1,6 +1,6 @@
 """Trading Arc Dashboard — home page.
 
-Overview of the T1-T5 end-to-end paper trading system. The four sub-pages
+Overview of the T1-T5 end-to-end trading system. The four sub-pages
 (Signal Pipeline, Backtesting, Performance, Parameters) deep-dive into the
 specific components.
 """
@@ -21,7 +21,7 @@ sidebar_links()
 st.markdown('<p class="section-label">Portfolio · Solo build</p>', unsafe_allow_html=True)
 st.title("Trading Arc Dashboard")
 st.markdown(
-    "End-to-end paper trading system. Live market data, automated chart generation, "
+    "End-to-end trading research system. Live market data, automated chart generation, "
     "dual-path signal analysis (technical indicators plus FinBERT sentiment), backtesting, "
     "and this oversight dashboard. Five repositories, free to run."
 )
@@ -92,16 +92,15 @@ for col, (num, label) in zip(cols, stats):
 st.markdown("---")
 
 # ── FEEDBACK LOOP ─────────────────────────────────────────────────────────────
-st.markdown('<p class="section-label">The Feedback Loop</p>', unsafe_allow_html=True)
+st.markdown('<p class="section-label">How the Pieces Connect</p>', unsafe_allow_html=True)
 st.markdown("&nbsp;")
 st.markdown(
     """
     <div class="loop-box">
-    T4 records whether each T3 signal configuration led to a winning or losing paper trade.
-    T3's parameters — indicator thresholds, sentiment weights, fusion ratio — tune from those
-    outcomes. <strong>T5 (this dashboard) surfaces signal performance and lets you review
-    parameter changes before they're applied. The system improves its own signal generation.
-    You stay in the loop as the decision-maker.</strong>
+    T4 backtests T3's signals and sweeps its parameters (indicator thresholds, sentiment
+    weights, fusion ratio). <strong>T5 (this dashboard) shows signal performance and the sweep
+    results. Changing T3's parameters is a manual decision; nothing tunes itself.</strong>
+    The figures in this demo are synthetic and illustrative.
     </div>
     """,
     unsafe_allow_html=True,
@@ -132,7 +131,7 @@ with col3:
 with col4:
     st.markdown("**⚙️ Parameters**")
     st.markdown(
-        "Current signal configuration and parameter sweep results. The T3↔T4 feedback loop in detail."
+        "Current signal configuration and parameter sweep results."
     )
 
 st.markdown("---")

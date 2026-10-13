@@ -24,11 +24,11 @@ The live demo runs on that synthetic data. Every equity curve, return, Sharpe ra
 
 | Page | What It Shows |
 |------|---------------|
-| **Home** | Arc overview, pipeline flow (T1→T5), feedback loop explanation |
+| **Home** | Arc overview, pipeline flow (T1→T5), how the pieces connect |
 | **Signal Pipeline** | How T1–T3 generate a signal: indicator breakdown, fusion math, per-pair output |
 | **Backtesting** | T4 equity curve, performance metrics, trade log, P&L distribution |
 | **Performance** | Equity + drawdown subplot, risk metrics, win/loss breakdown |
-| **Parameters** | Sweep results table, current config, T3↔T4 feedback loop detail |
+| **Parameters** | Sweep results table, current config, sweep-to-config review |
 
 ---
 
